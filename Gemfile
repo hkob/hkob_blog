@@ -55,6 +55,7 @@ group :development, :test do
   gem "rubocop-rails"
   gem "rubocop-rspec"
   gem "haml-lint"
+  gem "html2haml"
 end
 
 group :development do
