@@ -4,8 +4,11 @@ Rails アプリの作成方法を解説しているブログのリポジトリ�
 
 ## 記事一覧
 
+
+- [i18n の設定 : 小林研 Rails Tips (49)](https://hkob.hatenablog.com/entry/2024/01/18/050000)
+- [erb を haml に変換 : 小林研 Rails Tips (48)](https://hkob.hatenablog.com/entry/2024/01/17/050000)
 - [RSpec, Guard の設定 : 小林研 Rails Tips (47)](https://hkob.hatenablog.com/entry/2024/01/16/050000)
-- [ブログアプリケーションを作成する : 小林研 Rails Tips (46) - hkob’s blog](https://hkob.hatenablog.com/entry/2024/01/15/050000)
+- [ブログアプリケーションを作成する : 小林研 Rails Tips (46)](https://hkob.hatenablog.com/entry/2024/01/15/050000)
 - [PostgreSQL 環境の設定 : 小林研 Rails Tips (45)](https://hkob.hatenablog.com/entry/2024/01/14/050000)
 - [Rails のインストール : 小林研 Rails Tips (44)](https://hkob.hatenablog.com/entry/2024/01/13/050000)
 - [Ruby 3.3.0 のインストール : 小林研 Rails Tips (43)](https://hkob.hatenablog.com/entry/2024/01/12/050000)
