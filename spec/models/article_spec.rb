@@ -1,92 +1,94 @@
 require "rails_helper"
 
-# RSpec.describe Article, type: :model do
-#   let(:article) { articles :article }
-#   let(:can_delete) { articles :can_delete }
-#   let(:shinagawa) { campuses :shinagawa }
-#   let(:arakawa) { campuses :arakawa }
-#   let(:both) { campuses :both }
+RSpec.describe Article, type: :model do
+  let(:article) { articles :article1 }
+  let(:can_delete) { articles :can_delete }
 
-#   context "属性に関する共通テスト" do
-#     subject { can_delete }
-#     let(:another_object) { articles :another_object }
+  context "属性に関する共通テスト" do
+    subject { can_delete }
 
-#     it_behaves_like "存在制約", %i[]
-#     it_behaves_like "一意制約", %i[]
-#     it_behaves_like "複合一意制約", %i[]
-#     it_behaves_like "削除可能制約"
-#     it_behaves_like "削除不可制約"
-#     it_behaves_like "関連確認", :article, has_many: %i[], has_one: %i[], children: :optional, child: :optional
-#     it_behaves_like "親削除時に自分も削除", :article, %i[has_many has_one]
-#     it_behaves_like "親は削除不可", :article, %i[has_many has_one]
-#     it_behaves_like "親削除時にnullを設定", :article, %i[has_many has_one]
-#   end
+    it_behaves_like "存在制約", %i[title body]
+    it_behaves_like "削除可能制約"
 
-#   describe "Article クラスについて" do
-#     context "order_sort_order" do
-#       subject { described_class.order_sort_order }
-#       it_behaves_like "昇順確認", 0, ->(o) { o.sort_order }
-#     end
+    describe "body length check" do
+      context "body is 10 characters" do
+        before { subject.body = "a" * 10 }
+        it { is_expected.to be_valid }
+      end
 
-#     context "order_bar_desc" do
-#       subject { described_class.order_bar_desc }
-#       it_behaves_like "降順確認", 99999, ->(o) { o.bar }
-#     end
-#
-#     context "Class methods" do
-#       subject { described_class }
-#       it_behaves_like "gp"
-#
-#       it_behaves_like "単一メソッド呼び出し" do
-#         let(:test_set) do
-#           {
-#               foo: [nil, [true, false, true]],
-#           }
-#         end
-#       end
-#     end
+      context "body is 9 characters" do
+        before { subject.body = "a" * 9 }
+        it { is_expected.to be_invalid }
+      end
+    end
+  end
 
-#     describe "get_or_create method" do
-#       subject { -> { described_class.get_or_create(*params) }}
-#       context '既存のものを取得' do
-#         let(:params) { [object.xxx, object.yyy] }
-#         it_behaves_like "オブジェクト数が変化しない?", Article
-#       end
-#
-#       context '新規作成' do
-#         let(:params) { [object.xxx, other.yyy] }
-#         it_behaves_like "オブジェクトが1増えるか?", Article
-#       end
-#     end
-#   end
 
-#   describe "一つの Article オブジェクトについて" do
-#     subject { article }
+  #   describe "Article クラスについて" do
+  #     context "order_sort_order" do
+  #       subject { described_class.order_sort_order }
+  #       it_behaves_like "昇順確認", 0, ->(o) { o.sort_order }
+  #     end
 
-#     it_behaves_like "配列内に存在?", %w[
-#       described_class.foo\ bar
-#     ]
-#     it_behaves_like "同じ?", %w[
-#       described_class.foo\ bar
-#     ]
-#     it_behaves_like "配列内に存在しない?", %w[
-#       described_class.foo\ bar
-#     ]
-#     it_behaves_like "一致しない?", %w[
-#       described_class.foo\ bar
-#     ]
-#   end
+  #     context "order_bar_desc" do
+  #       subject { described_class.order_bar_desc }
+  #       it_behaves_like "降順確認", 99999, ->(o) { o.bar }
+  #     end
+  #
+  #     context "Class methods" do
+  #       subject { described_class }
+  #       it_behaves_like "gp"
+  #
+  #       it_behaves_like "単一メソッド呼び出し" do
+  #         let(:test_set) do
+  #           {
+  #               foo: [nil, [true, false, true]],
+  #           }
+  #         end
+  #       end
+  #     end
 
-#   context "複数の Article オブジェクトについて" do
-#     let!(:targets) { articles(*%i[foo bar baz]) }
-#     subject { targets }
+  #     describe "get_or_create method" do
+  #       subject { -> { described_class.get_or_create(*params) }}
+  #       context '既存のものを取得' do
+  #         let(:params) { [object.xxx, object.yyy] }
+  #         it_behaves_like "オブジェクト数が変化しない?", Article
+  #       end
+  #
+  #       context '新規作成' do
+  #         let(:params) { [object.xxx, other.yyy] }
+  #         it_behaves_like "オブジェクトが1増えるか?", Article
+  #       end
+  #     end
+  #   end
 
-#     it_behaves_like "配列メソッド呼び出し" do
-#       let(:test_set) do
-#         {
-#             foo: [nil, [true, false, true]],
-#         }
-#       end
-#     end
-#   end
-# end
+  #   describe "一つの Article オブジェクトについて" do
+  #     subject { article }
+
+  #     it_behaves_like "配列内に存在?", %w[
+  #       described_class.foo\ bar
+  #     ]
+  #     it_behaves_like "同じ?", %w[
+  #       described_class.foo\ bar
+  #     ]
+  #     it_behaves_like "配列内に存在しない?", %w[
+  #       described_class.foo\ bar
+  #     ]
+  #     it_behaves_like "一致しない?", %w[
+  #       described_class.foo\ bar
+  #     ]
+  #   end
+
+  #   context "複数の Article オブジェクトについて" do
+  #     let!(:targets) { articles(*%i[foo bar baz]) }
+  #     subject { targets }
+
+  #     it_behaves_like "配列メソッド呼び出し" do
+  #       let(:test_set) do
+  #         {
+  #             foo: [nil, [true, false, true]],
+  #         }
+  #       end
+  #     end
+  #   end
+end

@@ -1,3 +1,35 @@
+### model spec
+
+# @see https://hkob.hatenablog.com/entry/2023/12/05/050000
+shared_examples_for "存在制約" do |keys|
+  it { is_expected.to be_valid }
+
+  keys&.each do |key|
+    it "#{key} の内容が nil のとき、エラーになること" do
+      subject[key] = nil
+      expect(subject).not_to be_valid
+    end
+  end
+end
+
+# @see https://hkob.hatenablog.com/entry/2023/12/05/050000
+shared_examples_for "削除可能制約" do
+  it "削除できること" do
+    klass = subject.class
+    expect { subject.destroy }.to change(klass, :count).by(-1)
+  end
+end
+
+# @see https://hkob.hatenablog.com/entry/2023/12/05/050000
+shared_examples_for "削除不可制約" do
+  it "削除できないこと" do
+    klass = subject.class
+    expect { subject.destroy }.not_to change(klass, :count)
+  end
+end
+
+### request spec
+
 # @see https://hkob.hatenablog.com/entry/2023/12/20/050000
 shared_examples_for "レスポンスコード確認" do |value|
   it "レスポンスのステータスが #{value} であること" do

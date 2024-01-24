@@ -1,0 +1,7 @@
+article1:
+  title: "This is the first article"
+  body: "This is the body of the first article"
+
+can_delete:
+  title: "This is the second article that can be deleted"
+  body: "This is the body of the second article"
