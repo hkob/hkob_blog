@@ -1,2 +1,12 @@
 - content_for :title do
   - @page_title = t ".title"
+
+%table
+  %thead
+    = labels Article, %w[title], add_control: true
+  %tbody
+    - @articles.each do |article|
+      %tr
+        %td= article.title
+        %td
+

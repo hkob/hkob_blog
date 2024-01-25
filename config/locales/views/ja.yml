@@ -1,4 +1,7 @@
 ja:
   articles:
     index:
-      title: こんにちは、Rails!
+      title: 記事一覧
+
+  common:
+    control: 制御

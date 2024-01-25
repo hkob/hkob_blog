@@ -13,7 +13,7 @@ RSpec.describe ArticlesController, type: :request do
   describe "GET #index" do
     subject { -> { get articles_path } }
     it_behaves_like "レスポンスコード確認", 200
-    it_behaves_like "描画結果に文字列が含まれている?", %w[こんにちは Rails!]
+    it_behaves_like "描画結果に文字列が含まれている?", %w[記事一覧 タイトル]
   end
 
   # describe "GET #new" do
