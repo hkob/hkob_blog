@@ -2,6 +2,9 @@ ja:
   articles:
     index:
       title: 記事一覧
+    show:
+      title: 記事詳細
+      link_title: 表示
 
   common:
     control: 制御

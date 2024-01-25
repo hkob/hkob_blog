@@ -1,8 +1,8 @@
 require "rails_helper"
 
 RSpec.describe ArticlesController, type: :request do
-  # let!(:article) { articles :can_delete }
-  # let!(:object) { article }
+  let!(:article) { articles :can_delete }
+  let!(:object) { article }
   # let!(:attrs) { object.attributes }
   # let(:not_mine) { articles :not_mine }
 
@@ -15,6 +15,20 @@ RSpec.describe ArticlesController, type: :request do
     it_behaves_like "レスポンスコード確認", 200
     it_behaves_like "描画結果に文字列が含まれている?", %w[記事一覧 タイトル]
   end
+
+  describe "GET #show" do
+    subject { -> { get article_path(object) } }
+    it_behaves_like "レスポンスコード確認", 200
+    it_behaves_like "描画結果に文字列が含まれている?", %w[This is the second article]
+  end
+
+  #     context "now owned object" do
+  #       let(:one) { not_mine }
+  #       it_behaves_like "レスポンスコード確認", 302
+  #       it_behaves_like "rootリダイレクト確認"
+  #     end
+  #   end
+  # end
 
   # describe "GET #new" do
   #   subject { -> { get new_article_path } }
@@ -117,22 +131,6 @@ RSpec.describe ArticlesController, type: :request do
   #     let(:one) { not_mine }
   #     it_behaves_like "レスポンスコード確認", 302
   #     it_behaves_like "rootリダイレクト確認"
-  #   end
-  # end
-
-  #   describe "GET #show" do
-  #     subject { -> { get article_path(one) } }
-  #     context "owned object" do
-  #       let(:one) { article }
-  #       it_behaves_like "レスポンスコード確認", 200
-  #       it_behaves_like "描画結果に文字列が含まれている?", %w[XXX表示: YYY]
-  #     end
-
-  #     context "now owned object" do
-  #       let(:one) { not_mine }
-  #       it_behaves_like "レスポンスコード確認", 302
-  #       it_behaves_like "rootリダイレクト確認"
-  #     end
   #   end
   # end
 
