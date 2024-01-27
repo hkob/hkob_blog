@@ -5,6 +5,9 @@ ja:
     show:
       title: 記事詳細
       link_title: 表示
+    new:
+      title: 記事作成
+      link_title: 追加
 
   common:
     control: 制御

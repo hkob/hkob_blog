@@ -13,6 +13,25 @@ module ApplicationHelper
     controller_action_and_params(path, method).values_at(:controller, :action)
   end
 
+  # @param [form] form
+  # @param [Object] model
+  # @param [Symbol] symbol
+  # @param [String, nil] add_text
+  # @return [Temple::HTML::SafeString] form 用の label
+  # @note form_label_and_error
+  def form_label_and_error(form, model, symbol, add_text: nil)
+    content_tag :div do
+      concat form.label symbol
+      if add_text
+        concat content_tag(:span, add_text)
+      end
+      if (error_messages = model.errors.full_messages_for(symbol)).present?
+        concat content_tag(:br)
+        concat content_tag(:span, error_messages.join(", "), class: "error_message")
+      end
+    end
+  end
+
   # @param [Hash] cap コントローラ名・アクション名・パラメータのハッシュ
   # @param [Symbol] key
   def key_from_cap(cap, key)

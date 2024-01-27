@@ -1,0 +1,18 @@
+= form_with model: @article do |f|
+  %table
+    %thead
+      %tr
+        %th 項目
+        %th 内容
+    %tbody
+      - %i[title body].each do |attr|
+        %tr
+          %td= form_label_and_error f, @article, attr
+          %td
+            - case attr
+            - when :title
+              = f.text_field attr
+            - else
+              = f.text_area attr, rows: 10, cols: 80
+      %tr
+        %td{colspan: 2}= f.submit

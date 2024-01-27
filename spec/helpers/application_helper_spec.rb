@@ -70,5 +70,23 @@ describe ApplicationHelper, type: :helper do
         }
       end
     end
+
+    describe "form_label_and_error" do
+      let(:article) { articles :can_delete }
+      let(:lbl) { "<label for=\"article_title\">タイトル</label>" }
+      let(:err) { "<span class=\"error_message\">タイトルを入力してください</span>" }
+      it "form_label_and_error で適切なラベルが設定できること" do
+        form_with model: article do |f|
+          expect(helper.form_label_and_error(f, article,  :title)).to(
+            eq "<div>#{lbl}</div>")
+          expect(helper.form_label_and_error(f, article, :title, add_text: "add_text")).to(
+            eq "<div>#{lbl}<span>add_text</span></div>")
+          article.title = nil
+          article.save
+          expect(helper.form_label_and_error(f, article,  :title)).to(
+            eq "<div><div class=\"field_with_errors\">#{lbl}</div><br></br>#{err}</div>")
+        end
+      end
+    end
   end
 end

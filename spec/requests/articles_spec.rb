@@ -22,29 +22,11 @@ RSpec.describe ArticlesController, type: :request do
     it_behaves_like "描画結果に文字列が含まれている?", %w[This is the second article]
   end
 
-  #     context "now owned object" do
-  #       let(:one) { not_mine }
-  #       it_behaves_like "レスポンスコード確認", 302
-  #       it_behaves_like "rootリダイレクト確認"
-  #     end
-  #   end
-  # end
-
-  # describe "GET #new" do
-  #   subject { -> { get new_article_path } }
-  #   context "owned object" do
-  #     let(:one) { article }
-  #     it_behaves_like "レスポンスコード確認", 200
-  #     it_behaves_like "描画結果に文字列が含まれている?", %w[XXX一覧]
-  #     it_behaves_like "描画結果に文字列が含まれていない?", "XXXの追加"
-  #   end
-
-  #   context "not owned object" do
-  #     let(:one) { not_mine }
-  #     it_behaves_like "レスポンスコード確認", 302
-  #     it_behaves_like "rootリダイレクト確認"
-  #   end
-  # end
+  describe "GET #new" do
+    subject { -> { get new_article_path } }
+    it_behaves_like "レスポンスコード確認", 200
+    it_behaves_like "描画結果に文字列が含まれている?", %w[記事作成 タイトル 本文]
+  end
 
   # describe "POST #create" do
   #   before { object.destroy }
