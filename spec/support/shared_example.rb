@@ -54,6 +54,20 @@ shared_examples_for "削除不可制約" do
   end
 end
 
+# @see https://hkob.hatenablog.com/entry/2023/12/13/050000
+shared_examples_for "オブジェクト数が変化しない?" do |klass|
+  it "#{klass}.count が変化しないこと" do
+    expect { subject.call }.not_to change(klass, :count)
+  end
+end
+
+# @see https://hkob.hatenablog.com/entry/2023/12/13/050000
+shared_examples_for "オブジェクトが1増えるか?" do |klass|
+  it "#{klass}.count が 1 つ増えること" do
+    expect { subject.call }.to change(klass, :count).by 1
+  end
+end
+
 ### request spec
 
 # @see https://hkob.hatenablog.com/entry/2023/12/20/050000
@@ -77,5 +91,29 @@ shared_examples_for "描画結果に文字列が含まれていない?" do |strs
   it "レスポンスの文字列が「#{strs}」を含まないこと" do
     subject.call
     Array(strs).each { |str| expect(response.body).not_to include str }
+  end
+end
+
+# @see https://hkob.hatenablog.com/entry/2023/12/24/050000
+shared_examples_for "リダイレクト確認" do
+  it do
+    subject.call
+    expect(response).to redirect_to(return_path)
+  end
+end
+
+# @see https://hkob.hatenablog.com/entry/2023/12/25/050000
+shared_examples_for "Notice メッセージ確認" do |str|
+  it "notice に「#{str}」が出力されること" do
+    subject.call
+    expect(flash.now[:notice]).to eq str
+  end
+end
+
+# @see https://hkob.hatenablog.com/entry/2023/12/26/050000
+shared_examples_for "Alert メッセージ確認" do |str|
+  it "alert に「#{str}」が出力されること" do
+    subject.call
+    expect(flash.now[:alert]).to eq str
   end
 end

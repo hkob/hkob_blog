@@ -11,3 +11,33 @@ ja:
 
   common:
     control: 制御
+
+  flash:
+    create:
+      notice: "%{obj}を登録しました。"
+      alert: "%{obj}の登録に失敗しました。"
+    update:
+      notice: "%{obj}を更新しました。"
+      alert: "%{obj}の更新に失敗しました。"
+    edit:
+      alert: "%{obj}を編集する権限がありません。"
+    destroy:
+      notice: "%{obj}を削除しました。"
+      alert: "%{obj}を削除する権限がありません。"
+    show:
+      alert: "%{obj}を表示する権限がありません。"
+    copy:
+      notice: "%{obj}を一括コピーしました。"
+    duplicate:
+      notice: "%{obj}を複製しました。"
+    edit_status:
+      create: "編集を開始します。"
+      update: "編集状態を解除しました。"
+    remove_all:
+      notice: "%{obj}を全て削除しました。"
+    append_all:
+      notice: "%{obj}を一括登録しました。"
+    update_all:
+      notice: "%{obj}を一括更新しました。"
+    permission_error:
+      alert: "ページを表示する権限がありません。"
