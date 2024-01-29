@@ -68,6 +68,21 @@ shared_examples_for "オブジェクトが1増えるか?" do |klass|
   end
 end
 
+# @see https://hkob.hatenablog.com/entry/2024/01/29/050000
+shared_examples_for "オブジェクト属性が変化した?" do |klass, key, value|
+  it do
+    pre_value = object.send(key)
+    expect { subject.call }.to change { klass.find(object.id).send(key) }.from(pre_value).to(value)
+  end
+end
+
+# @see https://hkob.hatenablog.com/entry/2024/01/29/050000
+shared_examples_for "オブジェクト属性が変化しない?" do |klass, key|
+  it "#{klass} の #{key} が変化しないこと" do
+    expect { subject.call }.not_to change(klass.find(object.id), key)
+  end
+end
+
 ### request spec
 
 # @see https://hkob.hatenablog.com/entry/2023/12/20/050000

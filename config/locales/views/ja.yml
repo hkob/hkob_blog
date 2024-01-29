@@ -8,6 +8,9 @@ ja:
     new:
       title: 記事作成
       link_title: 追加
+    edit:
+      title: 記事更新
+      link_title: 編集
 
   common:
     control: 制御

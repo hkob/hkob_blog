@@ -46,49 +46,30 @@ RSpec.describe ArticlesController, type: :request do
     end
   end
 
-  #   context "not owned object" do
-  #     let(:attrs) { not_mine.attributes }
-  #     it_behaves_like "レスポンスコード確認", 302
-  #     it_behaves_like "rootリダイレクト確認"
-  #   end
-  # end
+  describe "GET #edit" do
+    subject { -> { get edit_article_path(object) } }
+    it_behaves_like "レスポンスコード確認", 200
+    it_behaves_like "描画結果に文字列が含まれている?", "記事更新"
+  end
 
-  # describe "GET #edit" do
-  #   context "normal access" do
-  #     subject { -> { get edit_article_path(one) } }
-  #     context "owned object" do
-  #       let(:one) { article }
-  #       it_behaves_like "レスポンスコード確認", 200
-  #       it_behaves_like "描画結果に文字列が含まれている?", "XXXの編集"
-  #     end
+  describe "PATCH #update" do
+    subject { -> { patch article_path(object), params: {article: attrs} } }
+    let(:return_path) { article_path(object) }
+    context "正しいパラメータに対して" do
+      before { attrs["title"] = "ABC" }
+      it_behaves_like "レスポンスコード確認", 302
+      it_behaves_like "オブジェクト属性が変化した?", Article, :title, "ABC"
+      it_behaves_like "リダイレクト確認"
+      it_behaves_like "Notice メッセージ確認", "記事を更新しました。"
+    end
 
-  #     context "not owned object" do
-  #       let(:one) { not_mine }
-  #       it_behaves_like "レスポンスコード確認", 302
-  #       it_behaves_like "rootリダイレクト確認"
-  #     end
-  #   end
-  # end
-
-  # describe "PATCH #update" do
-  #   subject { -> { patch article_path(one), params: {article: attrs} } }
-  #   context "owned object" do
-  #     let(:one) { object }
-  #     context "正しいパラメータに対して" do
-  #       before { attrs["sort_order"] = 1 }
-  #       it_behaves_like "レスポンスコード確認", 302
-  #       it_behaves_like "オブジェクト属性が変化した?", Article, :sort_order, 1
-  #       it_behaves_like "リダイレクト確認"
-  #       it_behaves_like "Notice メッセージ確認", "XXXを更新しました。"
-  #     end
-
-  #     context "不正なパラメータに対して" do
-  #       before { attrs["name"] = "" }
-  #       it_behaves_like "レスポンスコード確認", 422
-  #       it_behaves_like "オブジェクト属性が変化しない?", Article, :name
-  #       it_behaves_like "Alert メッセージ確認", "XXXの更新に失敗しました。"
-  #     end
-  #   end
+    context "不正なパラメータに対して" do
+      before { attrs["title"] = "" }
+      it_behaves_like "レスポンスコード確認", 422
+      it_behaves_like "オブジェクト属性が変化しない?", Article, :title
+      it_behaves_like "Alert メッセージ確認", "記事の更新に失敗しました。"
+    end
+  end
 
   #   context "not owned object" do
   #     let(:one) { not_mine }
