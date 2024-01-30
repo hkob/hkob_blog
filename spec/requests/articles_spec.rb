@@ -71,22 +71,14 @@ RSpec.describe ArticlesController, type: :request do
     end
   end
 
-  #   context "not owned object" do
-  #     let(:one) { not_mine }
-  #     it_behaves_like "レスポンスコード確認", 302
-  #     it_behaves_like "rootリダイレクト確認"
-  #   end
-  # end
-
-  # describe "DELETE #destroy" do
-  #   subject { -> { delete article_path(one) } }
-  #   context "owned object" do
-  #     let(:one) { article }
-  #     it_behaves_like "レスポンスコード確認", 302
-  #     it_behaves_like "オブジェクトが1減るか?", Article
-  #     it_behaves_like "リダイレクト確認"
-  #     it_behaves_like "Notice メッセージ確認", "XXXを削除しました。"
-  #   end
+  describe "DELETE #destroy" do
+    subject { -> { delete article_path(object) } }
+    let(:return_path) { articles_path }
+    it_behaves_like "レスポンスコード確認", 303
+    it_behaves_like "オブジェクトが1減るか?", Article
+    it_behaves_like "リダイレクト確認"
+    it_behaves_like "Notice メッセージ確認", "記事を削除しました。"
+  end
 
   #   context "now owned object" do
   #     let(:one) { not_mine }

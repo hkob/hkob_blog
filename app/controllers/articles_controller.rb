@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :take_one, only: %i[show edit update]
+  before_action :take_one, only: %i[show edit update destroy]
   def index
     @articles = Article.all
   end
@@ -31,6 +31,11 @@ class ArticlesController < ApplicationController
       flash.now[:alert] = alert_message Article
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @article.destroy
+    redirect_to articles_path, notice: notice_message(Article), status: :see_other
   end
 
   private

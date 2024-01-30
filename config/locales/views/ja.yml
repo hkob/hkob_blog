@@ -11,9 +11,13 @@ ja:
     edit:
       title: 記事更新
       link_title: 編集
+    destroy:
+      link_title: 削除
 
   common:
     control: 制御
+  confirm:
+    destroy: "%{obj}を削除してよろしいですか?"
 
   flash:
     create:

@@ -9,8 +9,18 @@ module ApplicationHelper
   # @param [String] path path 名
   # @param [Symbol,nil] method メソッド名
   # @return [Array<String>] コントローラ名とアクション名の配列
+  # @see https://hkob.hatenablog.com/entry/2024/01/01/050000
   def controller_and_action(path, method = :get)
     controller_action_and_params(path, method).values_at(:controller, :action)
+  end
+
+  # @param [String] path path 名
+  # @param [Class] model モデルクラス
+  # @param [String, nil] title タイトル
+  # @param [Hash] option 追加オプション
+  # @see https://hkob.hatenablog.com/entry/2024/01/08/050000
+  def destroy_lotfp(path, model, title: nil, option: {})
+    lotfp path, :delete, title: title, option: option.merge(confirm_destroy(model))
   end
 
   # @param [form] form
@@ -19,6 +29,7 @@ module ApplicationHelper
   # @param [String, nil] add_text
   # @return [Temple::HTML::SafeString] form 用の label
   # @note form_label_and_error
+  # @note https://hkob.hatenablog.com/entry/2024/01/10/050000
   def form_label_and_error(form, model, symbol, add_text: nil)
     content_tag :div do
       concat form.label symbol
@@ -42,6 +53,7 @@ module ApplicationHelper
   # @param [Array<Symbol>] array アトリビュートkeyの配列
   # @param [Boolean] add_control 制御列を追加する時に true
   # @return [Temple::HTML::SafeString] ラベル行
+  # @see https://hkob.hatenablog.com/entry/2023/12/31/050000
   def labels(model, array, add_control: false)
     content_tag :tr do
       t_ars(model, array).each do |w|

@@ -83,6 +83,13 @@ shared_examples_for "オブジェクト属性が変化しない?" do |klass, key
   end
 end
 
+# @see https://hkob.hatenablog.com/entry/2024/01/30/050000
+shared_examples_for "オブジェクトが1減るか?" do |klass|
+  it "#{klass}.count が 1 つ減ること" do
+    expect { subject.call }.to change(klass, :count).by(-1)
+  end
+end
+
 ### request spec
 
 # @see https://hkob.hatenablog.com/entry/2023/12/20/050000
