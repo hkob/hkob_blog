@@ -10,6 +10,7 @@
     %meta{content: "width=device-width,initial-scale=1", name: "viewport"}/
     = csrf_meta_tags
     = csp_meta_tag
+    = javascript_importmap_tags
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
   %body
     - if @page_title.present?
