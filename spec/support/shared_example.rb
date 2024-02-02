@@ -90,6 +90,40 @@ shared_examples_for "オブジェクトが1減るか?" do |klass|
   end
 end
 
+# @see https://hkob.hatenablog.com/entry/2023/12/06/050000
+shared_examples_for "関連確認" do |model, hash|
+  has_many_relations = hash[:has_many]
+  has_one_relations = hash[:has_one]
+  children = hash[:children] || model.to_s.pluralize
+  child = hash[:child] || model
+  context "#{model}を削除するとき" do
+    has_many_relations&.each do |relation|
+      it "#{relation}.#{children}.count が1つ減ること" do
+        parent = subject.send(relation)
+        expect { subject.destroy }.to change(parent.send(children), :count).by(-1)
+      end
+    end
+    has_one_relations&.each do |relation|
+      it "#{relation}.#{child} が nil になること" do
+        parent = subject.send(relation)
+        subject.destroy
+        expect(parent.send("reload_#{child}")).to be_nil
+      end
+    end
+  end
+end
+
+# @see https://hkob.hatenablog.com/entry/2023/12/07/050000
+shared_examples_for "親削除時に自分も削除" do |model, relations|
+  relations.each do |relation|
+    context "#{model}.#{relation}を削除したとき" do
+      it "関連により自分自身も削除されること" do
+        parent = subject.send(relation)
+        expect { parent.destroy }.to change(model.to_s.pluralize.classify.constantize, :count)
+      end
+    end
+  end
+end
 ### request spec
 
 # @see https://hkob.hatenablog.com/entry/2023/12/20/050000

@@ -1,26 +1,29 @@
 require "rails_helper"
 
-# RSpec.describe Comment, type: :model do
-#   let(:comment) { comments :comment }
-#   let(:can_delete) { comments :can_delete }
-#   let(:shinagawa) { campuses :shinagawa }
-#   let(:arakawa) { campuses :arakawa }
-#   let(:both) { campuses :both }
+RSpec.describe Comment, type: :model do
+  let(:comment) { comments :comment }
+  let(:can_delete) { comments :can_delete }
 
-#   context "属性に関する共通テスト" do
-#     subject { can_delete }
-#     let(:another_object) { comments :another_object }
+  context "属性に関する共通テスト" do
+    subject { can_delete }
+    it_behaves_like "存在制約", %i[commenter body article_id]
+    it_behaves_like "削除可能制約"
+    it_behaves_like "関連確認", :comment, has_many: %i[article]
+    it_behaves_like "親削除時に自分も削除", :comment, %i[article]
 
-#     it_behaves_like "存在制約", %i[]
-#     it_behaves_like "一意制約", %i[]
-#     it_behaves_like "複合一意制約", %i[]
-#     it_behaves_like "削除可能制約"
-#     it_behaves_like "削除不可制約"
-#     it_behaves_like "関連確認", :comment, has_many: %i[], has_one: %i[], children: :optional, child: :optional
-#     it_behaves_like "親削除時に自分も削除", :comment, %i[has_many has_one]
-#     it_behaves_like "親は削除不可", :comment, %i[has_many has_one]
-#     it_behaves_like "親削除時にnullを設定", :comment, %i[has_many has_one]
-#   end
+    describe "body length check" do
+      context "body is 10 characters" do
+        before { subject.body = "a" * 10 }
+        it { is_expected.to be_valid }
+      end
+
+      context "body is 9 characters" do
+        before { subject.body = "a" * 9 }
+        it { is_expected.to be_invalid }
+      end
+    end
+  end
+
 
 #   describe "Comment クラスについて" do
 #     context "order_sort_order" do
@@ -89,4 +92,4 @@ require "rails_helper"
 #       end
 #     end
 #   end
-# end
+end

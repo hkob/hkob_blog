@@ -1,0 +1,9 @@
+comment1:
+  commenter: "user 1"
+  body: "comment 1 for article 1"
+  article: article1
+
+can_delete:
+  commenter: "user 2"
+  body: "comment 2 for article can_delete"
+  article: can_delete
