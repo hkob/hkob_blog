@@ -9,5 +9,7 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   root "articles#index"
-  resources :articles
+  resources :articles do
+    resources :comments, controller: "articles/comments"
+  end
 end
