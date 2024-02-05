@@ -124,6 +124,18 @@ shared_examples_for "親削除時に自分も削除" do |model, relations|
     end
   end
 end
+
+# @see https://hkob.hatenablog.com/entry/2023/12/11/050000
+shared_examples_for "降順確認" do |start, block|
+  it "降順に並んでいること" do
+    subject.each do |object|
+      value = block.call(object)
+      expect(value <=> start).to be <= 0
+      start = value
+    end
+  end
+end
+
 ### request spec
 
 # @see https://hkob.hatenablog.com/entry/2023/12/20/050000

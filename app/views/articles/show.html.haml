@@ -2,3 +2,13 @@
   - @page_title = @article.title
 
 %p= @article.body
+
+%ul
+  %li= lotfp edit_article_path(@article)
+  %li= destroy_lotfp article_path(@article), Article
+
+%h2 Comments
+= render partial: "articles/comments/comment", collection: @comments
+
+%h2 Add a comment:
+= render "articles/comments/form"

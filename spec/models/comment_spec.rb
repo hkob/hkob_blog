@@ -24,72 +24,68 @@ RSpec.describe Comment, type: :model do
     end
   end
 
+  describe "Comment クラスについて" do
+    context "order_bar_desc" do
+      subject { described_class.order_created_at_desc }
+      it_behaves_like "降順確認", Date.today + 1, ->(o) { o.created_at }
+    end
+  end
 
-#   describe "Comment クラスについて" do
-#     context "order_sort_order" do
-#       subject { described_class.order_sort_order }
-#       it_behaves_like "昇順確認", 0, ->(o) { o.sort_order }
-#     end
+  #
+  #     context "Class methods" do
+  #       subject { described_class }
+  #       it_behaves_like "gp"
+  #
+  #       it_behaves_like "単一メソッド呼び出し" do
+  #         let(:test_set) do
+  #           {
+  #               foo: [nil, [true, false, true]],
+  #           }
+  #         end
+  #       end
+  # end
 
-#     context "order_bar_desc" do
-#       subject { described_class.order_bar_desc }
-#       it_behaves_like "降順確認", 99999, ->(o) { o.bar }
-#     end
-#
-#     context "Class methods" do
-#       subject { described_class }
-#       it_behaves_like "gp"
-#
-#       it_behaves_like "単一メソッド呼び出し" do
-#         let(:test_set) do
-#           {
-#               foo: [nil, [true, false, true]],
-#           }
-#         end
-#       end
-#     end
+  #     describe "get_or_create method" do
+  #       subject { -> { described_class.get_or_create(*params) }}
+  #       context '既存のものを取得' do
+  #         let(:params) { [object.xxx, object.yyy] }
+  #         it_behaves_like "オブジェクト数が変化しない?", Comment
+  #       end
+  #
+  #       context '新規作成' do
+  #         let(:params) { [object.xxx, other.yyy] }
+  #         it_behaves_like "オブジェクトが1増えるか?", Comment
+  #       end
+  #     end
+  #   end
 
-#     describe "get_or_create method" do
-#       subject { -> { described_class.get_or_create(*params) }}
-#       context '既存のものを取得' do
-#         let(:params) { [object.xxx, object.yyy] }
-#         it_behaves_like "オブジェクト数が変化しない?", Comment
-#       end
-#
-#       context '新規作成' do
-#         let(:params) { [object.xxx, other.yyy] }
-#         it_behaves_like "オブジェクトが1増えるか?", Comment
-#       end
-#     end
-#   end
+  #   describe "一つの Comment オブジェクトについて" do
+  #     subject { comment }
 
-#   describe "一つの Comment オブジェクトについて" do
-#     subject { comment }
+  #     it_behaves_like "配列内に存在?", %w[
+  #       described_class.foo\ bar
+  #     ]
+  #     it_behaves_like "同じ?", %w[
+  #       described_class.foo\ bar
+  #     ]
+  #     it_behaves_like "配列内に存在しない?", %w[
+  #       described_class.foo\ bar
+  #     ]
+  #     it_behaves_like "一致しない?", %w[
+  #       described_class.foo\ bar
+  #     ]
+  #   end
 
-#     it_behaves_like "配列内に存在?", %w[
-#       described_class.foo\ bar
-#     ]
-#     it_behaves_like "同じ?", %w[
-#       described_class.foo\ bar
-#     ]
-#     it_behaves_like "配列内に存在しない?", %w[
-#       described_class.foo\ bar
-#     ]
-#     it_behaves_like "一致しない?", %w[
-#       described_class.foo\ bar
-#     ]
-#   end
+  #   context "複数の Comment オブジェクトについて" do
+  #     let!(:targets) { comments(*%i[foo bar baz]) }
+  #     subject { targets }
 
-#   context "複数の Comment オブジェクトについて" do
-#     let!(:targets) { comments(*%i[foo bar baz]) }
-#     subject { targets }
-
-#     it_behaves_like "配列メソッド呼び出し" do
-#       let(:test_set) do
-#         {
-#             foo: [nil, [true, false, true]],
-#         }
-#       end
-#     end
-#   end
+  #     it_behaves_like "配列メソッド呼び出し" do
+  #       let(:test_set) do
+  #         {
+  #             foo: [nil, [true, false, true]],
+  #         }
+  #       end
+  #     end
+  #   end
 end
