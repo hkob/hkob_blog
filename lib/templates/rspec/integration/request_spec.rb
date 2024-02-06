@@ -49,7 +49,7 @@ require "rails_helper"
 #      context "owned object" do
 #        let(:one) { <%= singular_table_name %> }
 #        context "正しいパラメータに対して" do
-#          it_behaves_like "レスポンスコード確認", 303
+#          it_behaves_like "レスポンスコード確認", 302
 #          it_behaves_like "オブジェクトが1増えるか?", <%= class_name.singularize %>
 #          it_behaves_like "リダイレクト確認"
 #          it_behaves_like "Notice メッセージ確認", "XXXを登録しました。"
@@ -118,7 +118,7 @@ require "rails_helper"
 #      subject { -> { delete <%= singular_table_name %>_path(one) } }
 #      context "owned object" do
 #        let(:one) { <%= singular_table_name %> }
-#        it_behaves_like "レスポンスコード確認", 302
+#        it_behaves_like "レスポンスコード確認", 303
 #        it_behaves_like "オブジェクトが1減るか?", <%= class_name.singularize %>
 #        it_behaves_like "リダイレクト確認"
 #        it_behaves_like "Notice メッセージ確認", "XXXを削除しました。"

@@ -3,6 +3,7 @@ ja:
     ### model 名
     models:
       article: 記事
+      comment: コメント
 
     ### model の attribute 名
     attributes:

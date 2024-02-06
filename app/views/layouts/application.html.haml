@@ -13,6 +13,8 @@
     = javascript_importmap_tags
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
   %body
+    #notice= notice
+    #alert= alert
     - if @page_title.present?
       %h1= @page_title
     = yield

@@ -32,6 +32,16 @@ class ApplicationController < ActionController::Base
     params[:id].try { |id| model.find id }
   end
 
+  # @params [Array<Class>] models
+  # @return [Object, Array<Object>] 複数の場合、オブジェクトの配列、一つの場合、オブジェクト
+  # @note モデルクラスの配列を渡し、params に入っているデータを取得する
+  def objects_from_params(*models)
+    ans = models.map do |m|
+      params["#{m.to_s.underscore}_id"].try { |id| m.find id }
+    end
+    ans.count == 1 ? ans.first : ans
+  end
+
   # @param [Class] klass 表示するクラス
   # @return [String] 表示する notice message
   # @see https://hkob.hatenablog.com/entry/2023/12/17/050000

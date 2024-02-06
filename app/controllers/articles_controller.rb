@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Articles
 class ArticlesController < ApplicationController
   before_action :take_one, only: %i[show edit update destroy]
   def index
@@ -5,6 +8,8 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    @comments = @article.comments.order_created_at_desc
+    @comment = @article.comments.build
   end
 
   def new
@@ -21,8 +26,7 @@ class ArticlesController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @article.update(article_params)
@@ -39,6 +43,7 @@ class ArticlesController < ApplicationController
   end
 
   private
+
   def article_params
     params.require(:article).permit(:title, :body)
   end
