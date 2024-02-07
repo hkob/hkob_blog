@@ -10,5 +10,6 @@
 %h2 Comments
 = render partial: "articles/comments/comment", collection: @comments
 
-%h2 Add a comment:
-= render "articles/comments/form"
+- if @comment.new_record?
+  %h2 Add a comment:
+  = render "articles/comments/form"

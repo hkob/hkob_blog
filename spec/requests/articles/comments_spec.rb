@@ -85,25 +85,23 @@ RSpec.describe Articles::CommentsController, type: :request do
   #      end
   #    end
 
-  #    describe "PATCH #update" do
-  #      subject { -> { patch article_comment_path(one), params: {comment: attrs} } }
-  #      context "owned object" do
-  #        let(:one) { object }
-  #        context "正しいパラメータに対して" do
-  #          before { attrs["sort_order"] = 1 }
-  #          it_behaves_like "レスポンスコード確認", 302
-  #          it_behaves_like "オブジェクト属性が変化した?", Comment, :sort_order, 1
-  #          it_behaves_like "リダイレクト確認"
-  #          it_behaves_like "Notice メッセージ確認", "コメントを更新しました。"
-  #        end
+  describe "PATCH #update" do
+    subject { -> { patch article_comment_path(article, object), params: {comment: attrs} } }
+    context "正しいパラメータに対して" do
+      before { attrs["commenter"] = "ABC" }
+      it_behaves_like "レスポンスコード確認", 302
+      it_behaves_like "オブジェクト属性が変化した?", Comment, :commenter, "ABC"
+      it_behaves_like "リダイレクト確認"
+      it_behaves_like "Notice メッセージ確認", "コメントを更新しました。"
+    end
 
-  #        context "不正なパラメータに対して" do
-  #          before { attrs["name"] = "" }
-  #          it_behaves_like "レスポンスコード確認", 422
-  #          it_behaves_like "オブジェクト属性が変化しない?", Comment, :name
-  #          it_behaves_like "Alert メッセージ確認", "コメントの更新に失敗しました。"
-  #        end
-  #      end
+    context "不正なパラメータに対して" do
+      before { attrs["commenter"] = "" }
+      it_behaves_like "レスポンスコード確認", 422
+      it_behaves_like "オブジェクト属性が変化しない?", Comment, :commenter
+      it_behaves_like "Alert メッセージ確認", "コメントの更新に失敗しました。"
+    end
+  end
 
   #      context "not owned object" do
   #        let(:one) { not_mine }

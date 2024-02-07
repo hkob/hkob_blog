@@ -1,3 +1,7 @@
-- %i[commenter body].each do |attr|
-  %p= t_ars Comment, attr
-  %p= comment.send attr
+- if comment == @comment
+  = render "articles/comments/form"
+- else
+  - %i[commenter body].each do |attr|
+    %p= t_ars Comment, attr
+    %p= comment.send attr
+  = lotfp article_path(@article, comment_id: comment.id), title: "コメントを編集"

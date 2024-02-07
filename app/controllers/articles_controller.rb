@@ -9,7 +9,7 @@ class ArticlesController < ApplicationController
 
   def show
     @comments = @article.comments.order_created_at_desc
-    @comment = @article.comments.build
+    @comment = objects_from_params(Comment) || @article.comments.build
   end
 
   def new
