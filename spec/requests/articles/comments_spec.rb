@@ -103,22 +103,13 @@ RSpec.describe Articles::CommentsController, type: :request do
     end
   end
 
-  #      context "not owned object" do
-  #        let(:one) { not_mine }
-  #        it_behaves_like "レスポンスコード確認", 302
-  #        it_behaves_like "rootリダイレクト確認"
-  #      end
-  #    end
-
-  #    describe "DELETE #destroy" do
-  #      subject { -> { delete article_comment_path(one) } }
-  #      context "owned object" do
-  #        let(:one) { comment }
-  #        it_behaves_like "レスポンスコード確認", 303
-  #        it_behaves_like "オブジェクトが1減るか?", Comment
-  #        it_behaves_like "リダイレクト確認"
-  #        it_behaves_like "Notice メッセージ確認", "コメントを削除しました。"
-  #      end
+  describe "DELETE #destroy" do
+    subject { -> { delete article_comment_path(article, object) } }
+    it_behaves_like "レスポンスコード確認", 303
+    it_behaves_like "オブジェクトが1減るか?", Comment
+    it_behaves_like "リダイレクト確認"
+    it_behaves_like "Notice メッセージ確認", "コメントを削除しました。"
+  end
 
   #      context "now owned object" do
   #        let(:one) { not_mine }

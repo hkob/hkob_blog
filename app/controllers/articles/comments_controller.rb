@@ -1,6 +1,6 @@
 class Articles::CommentsController < ApplicationController
   before_action :take_base
-  before_action :take_one, only: %i[update]
+  before_action :take_one, only: %i[update destroy]
 
   def create
     @comment = @article.comments.build(comment_params)
@@ -20,6 +20,11 @@ class Articles::CommentsController < ApplicationController
       flash.now[:alert] = alert_message Comment
       render "articles/show", status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @comment.destroy
+    redirect_to @article, notice: notice_message(Comment), status: :see_other
   end
 
   private
