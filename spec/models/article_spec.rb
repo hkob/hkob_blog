@@ -7,7 +7,7 @@ RSpec.describe Article, type: :model do
   context "属性に関する共通テスト" do
     subject { can_delete }
 
-    it_behaves_like "存在制約", %i[title body]
+    it_behaves_like "存在制約", %i[title body status]
     it_behaves_like "削除可能制約"
 
     describe "body length check" do

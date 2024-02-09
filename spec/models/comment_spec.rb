@@ -6,7 +6,7 @@ RSpec.describe Comment, type: :model do
 
   context "属性に関する共通テスト" do
     subject { can_delete }
-    it_behaves_like "存在制約", %i[commenter body article_id]
+    it_behaves_like "存在制約", %i[commenter body article_id status]
     it_behaves_like "削除可能制約"
     it_behaves_like "関連確認", :comment, has_many: %i[article]
     it_behaves_like "親削除時に自分も削除", :comment, %i[article]
