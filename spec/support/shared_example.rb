@@ -38,6 +38,22 @@ shared_examples_for "存在制約" do |keys|
   end
 end
 
+shared_examples_for "値限定制約" do |key, ok_values, ng_values|
+  ok_values.each do |value|
+    it "#{key} の内容が #{value} のとき、エラーにならないこと" do
+      subject[key] = value
+      expect(subject).to be_valid
+    end
+  end
+
+  ng_values.each do |value|
+    it "#{key} の内容が #{value} のとき、エラーになること" do
+      subject[key] = value
+      expect(subject).not_to be_valid
+    end
+  end
+end
+
 # @see https://hkob.hatenablog.com/entry/2023/12/05/050000
 shared_examples_for "削除可能制約" do
   it "削除できること" do

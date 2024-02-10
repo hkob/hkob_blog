@@ -4,6 +4,7 @@ Rails アプリの作成方法を解説しているブログのリポジトリ�
 
 ## 記事一覧
 
+- [値限定制約 shared example: 小林研 Rails Tips (72)](https://hkob.hatenablog.com/entry/2024/02/10/050000)
 - [status 属性を追加する: 小林研 Rails Tips (71)](https://hkob.hatenablog.com/entry/2024/02/09/050000)
 - [コメント削除のテストと実装を記述する: 小林研 Rails Tips (70)](https://hkob.hatenablog.com/entry/2024/02/08/050000)
 - [コメント編集のテストと実装を記述する: 小林研 Rails Tips (69)](https://hkob.hatenablog.com/entry/2024/02/07/050000)
