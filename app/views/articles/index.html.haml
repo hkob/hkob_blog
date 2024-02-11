@@ -6,6 +6,8 @@
     = labels Article, %w[title], add_control: true
   %tbody
     - @articles.each do |article|
+      - next if article.archived?
+
       %tr
         %td= article.title
         %td

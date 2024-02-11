@@ -80,16 +80,16 @@ RSpec.describe Article, type: :model do
   #     ]
   #   end
 
-  #   context "複数の Article オブジェクトについて" do
-  #     let!(:targets) { articles(*%i[foo bar baz]) }
-  #     subject { targets }
+  context "複数の Article オブジェクトについて" do
+    let!(:targets) { articles(*%i[article1 can_delete]) }
+    subject { targets }
 
-  #     it_behaves_like "配列メソッド呼び出し" do
-  #       let(:test_set) do
-  #         {
-  #             foo: [nil, [true, false, true]],
-  #         }
-  #       end
-  #     end
-  #   end
+    it_behaves_like "配列メソッド呼び出し" do
+      let(:test_set) do
+        {
+          archived?: [nil, [false, false]],
+        }
+      end
+    end
+  end
 end

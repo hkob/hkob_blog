@@ -24,6 +24,18 @@ shared_examples_for "単一メソッド呼び出し(キーワード引数あり)
   end
 end
 
+# @see https://hkob.hatenablog.com/entry/2023/12/16/050000
+shared_examples_for "配列メソッド呼び出し" do
+  it "上述のメソッドの結果が正しいこと" do
+    test_set.each do |method, answers|
+      print "\tamst: #{method}\n"
+      answers.each_slice(2) do |(v, a)|
+        expect(subject.map { |o| o.send(method, *v) }).to eq a
+      end
+    end
+  end
+end
+
 ### model spec
 
 # @see https://hkob.hatenablog.com/entry/2023/12/05/050000

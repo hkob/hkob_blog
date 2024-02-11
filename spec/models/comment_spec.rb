@@ -77,16 +77,16 @@ RSpec.describe Comment, type: :model do
   #     ]
   #   end
 
-  #   context "複数の Comment オブジェクトについて" do
-  #     let!(:targets) { comments(*%i[foo bar baz]) }
-  #     subject { targets }
+  context "複数の Comment オブジェクトについて" do
+    let!(:targets) { comments(*%i[comment1 can_delete]) }
+    subject { targets }
 
-  #     it_behaves_like "配列メソッド呼び出し" do
-  #       let(:test_set) do
-  #         {
-  #             foo: [nil, [true, false, true]],
-  #         }
-  #       end
-  #     end
-  #   end
+    it_behaves_like "配列メソッド呼び出し" do
+      let(:test_set) do
+        {
+          archived?: [nil, [false, true]],
+        }
+      end
+    end
+  end
 end
