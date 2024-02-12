@@ -46,6 +46,12 @@ gem "bootsnap", require: false
 
 gem "haml-rails"
 
+gem "devise"
+gem "omniauth"
+gem "omniauth-rails_csrf_protection"
+gem "omniauth-github"
+gem "omniauth-google-oauth2"
+
 group :development, :test do
   gem "rspec-rails"
   gem "guard-rspec"
