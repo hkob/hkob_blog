@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!
 
   # @param [Class] klass 表示するクラス
   # @return [String] 表示する alert message
