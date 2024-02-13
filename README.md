@@ -4,6 +4,8 @@ Rails アプリの作成方法を解説しているブログのリポジトリ�
 
 ## 記事一覧
 
+- [ローカル devise 認証の作成: 小林研 Rails Tips (75)](https://hkob.hatenablog.com/entry/2024/02/13/050000)
+- [OAuth2 認証の実装: 小林研 Rails Tips (74)](https://hkob.hatenablog.com/entry/2024/02/12/050000)
 - [Visible module の実装: 小林研 Rails Tips (73)](https://hkob.hatenablog.com/entry/2024/02/11/050000)
 - [値限定制約 shared example: 小林研 Rails Tips (72)](https://hkob.hatenablog.com/entry/2024/02/10/050000)
 - [status 属性を追加する: 小林研 Rails Tips (71)](https://hkob.hatenablog.com/entry/2024/02/09/050000)

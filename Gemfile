@@ -46,6 +46,9 @@ gem "bootsnap", require: false
 
 gem "haml-rails"
 
+gem "devise"
+gem "devise-i18n"
+
 group :development, :test do
   gem "rspec-rails"
   gem "guard-rspec"
