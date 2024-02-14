@@ -4,6 +4,7 @@ Rails アプリの作成方法を解説しているブログのリポジトリ�
 
 ## 記事一覧
 
+- [記事にユーザを追加: 小林研 Rails Tips (76)](https://hkob.hatenablog.com/entry/2024/02/14/050000)
 - [ローカル devise 認証の作成: 小林研 Rails Tips (75)](https://hkob.hatenablog.com/entry/2024/02/13/050000)
 - [OAuth2 認証の実装: 小林研 Rails Tips (74)](https://hkob.hatenablog.com/entry/2024/02/12/050000)
 - [Visible module の実装: 小林研 Rails Tips (73)](https://hkob.hatenablog.com/entry/2024/02/11/050000)
@@ -70,7 +71,7 @@ Rails アプリの作成方法を解説しているブログのリポジトリ�
 - [単一メソッド呼び出し shared_example: 小林研 Rails Tips (12)](https://hkob.hatenablog.com/entry/2023/12/12/050000)
 - [降順確認 shared_example: 小林研 Rails Tips (11)](https://hkob.hatenablog.com/entry/2023/12/11/050000)
 - [昇順確認 shared_example: 小林研 Rails Tips (10)](https://hkob.hatenablog.com/entry/2023/12/10/050000)
-- [親は削除不可 shared_example: 小林研 Rails Tips (9)](https://hkob.hatenablog.com/entry/2023/12/09/050000)
+- [親削除時にnullを設定 shared_example: 小林研 Rails Tips (9)](https://hkob.hatenablog.com/entry/2023/12/09/070000)
 - [親は削除不可 shared_example: 小林研 Rails Tips (8)](https://hkob.hatenablog.com/entry/2023/12/08/050000)
 - [親削除時に自分も削除 shared_example: 小林研 Rails Tips (7)](https://hkob.hatenablog.com/entry/2023/12/07/050000)
 - [関連確認 shared_example: 小林研 Rails Tips (6)](https://hkob.hatenablog.com/entry/2023/12/06/050000)

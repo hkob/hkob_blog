@@ -153,6 +153,17 @@ shared_examples_for "親削除時に自分も削除" do |model, relations|
   end
 end
 
+# @see https://hkob.hatenablog.com/entry/2023/12/08/050000
+shared_examples_for "親は削除不可" do |model, relations|
+  relations.each do |relation|
+    it "#{model}.#{relation} が削除できないこと" do
+      parent = subject.send(relation)
+      parent.destroy
+      expect(parent.errors[:base].size).to eq(1)
+    end
+  end
+end
+
 # @see https://hkob.hatenablog.com/entry/2023/12/11/050000
 shared_examples_for "降順確認" do |start, block|
   it "降順に並んでいること" do

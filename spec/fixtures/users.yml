@@ -1,0 +1,11 @@
+hkob:
+  email: hkob@example.com
+  name: hkob
+
+other:
+  email: other@example.com
+  name: other
+
+can_delete:
+  email: can_delete@example.com
+  name: can_delete

@@ -10,6 +10,8 @@ RSpec.describe Article, type: :model do
     it_behaves_like "存在制約", %i[title body]
     it_behaves_like "値限定制約", :status, %w[public private archived], %w[NG]
     it_behaves_like "削除可能制約"
+    it_behaves_like "関連確認", :article, has_many: %i[user]
+    it_behaves_like "親は削除不可", :article, %i[user]
 
     describe "body length check" do
       context "body is 10 characters" do
