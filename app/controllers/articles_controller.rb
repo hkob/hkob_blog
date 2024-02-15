@@ -2,6 +2,7 @@
 
 # Articles
 class ArticlesController < ApplicationController
+  before_action :authenticate_user!, except: %i[index show]
   before_action :take_one, only: %i[show edit update destroy]
   def index
     @articles = Article.all
@@ -13,7 +14,7 @@ class ArticlesController < ApplicationController
   end
 
   def new
-    @article = Article.new
+    @article = current_user.articles.build
   end
 
   def create
@@ -45,7 +46,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :body, :status)
+    params.require(:article).permit(:title, :body, :status, :user_id)
   end
 
   def take_one

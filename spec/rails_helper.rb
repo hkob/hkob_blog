@@ -65,4 +65,17 @@ RSpec.configure do |config|
 
   # fixtures は最初に全部読み込む
   config.global_fixtures = :all
+
+  # for Request Spec
+  config.include Devise::Test::IntegrationHelpers, type: :request
+end
+
+def login_user_fixture_as(key)
+  @one = users key
+  sign_in @one
+end
+
+def user_login(key)
+  before { login_user_fixture_as key }
+  after { sign_out @one }
 end

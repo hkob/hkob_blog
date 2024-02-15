@@ -17,4 +17,6 @@
             - else
               = f.text_area attr, rows: 10, cols: 80
       %tr
-        %td{colspan: 2}= f.submit
+        %td{colspan: 2}
+          = f.hidden_field :user_id
+          = f.submit
