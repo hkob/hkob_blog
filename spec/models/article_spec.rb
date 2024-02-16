@@ -90,6 +90,8 @@ RSpec.describe Article, type: :model do
       let(:test_set) do
         {
           archived?: [nil, [false, false]],
+          owned_by?: [article.user, [true, false]],
+          user_name: [nil, %w[hkob can_delete]],
         }
       end
     end

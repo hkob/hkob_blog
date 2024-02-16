@@ -4,6 +4,7 @@ Rails アプリの作成方法を解説しているブログのリポジトリ�
 
 ## 記事一覧
 
+- [記事モデルのテスト追加: 小林研 Rails Tips (78)](https://hkob.hatenablog.com/entry/2024/02/16/050000)
 - [ログインのテスト: 小林研 Rails Tips (77)](https://hkob.hatenablog.com/entry/2024/02/15/050000)
 - [記事にユーザを追加: 小林研 Rails Tips (76)](https://hkob.hatenablog.com/entry/2024/02/14/050000)
 - [ローカル devise 認証の作成: 小林研 Rails Tips (75)](https://hkob.hatenablog.com/entry/2024/02/13/050000)
