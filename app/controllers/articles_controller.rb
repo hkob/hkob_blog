@@ -3,12 +3,13 @@
 # Articles
 class ArticlesController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
-  before_action :take_one, only: %i[show edit update destroy]
+  before_action :take_one, only: %i[edit update destroy]
   def index
     @articles = Article.all
   end
 
   def show
+    @article = object_from_params_id Article
     @comments = @article.comments.order_created_at_desc
     @comment = objects_from_params(Comment) || @article.comments.build
   end
@@ -51,5 +52,6 @@ class ArticlesController < ApplicationController
 
   def take_one
     @article = object_from_params_id Article
+    redirect_to root_path, alert: I18n.t("errors.messages.not_owned") unless @article.owned_by?(current_user)
   end
 end

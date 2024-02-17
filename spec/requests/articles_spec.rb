@@ -4,7 +4,7 @@ RSpec.describe ArticlesController, type: :request do
   let!(:article) { articles :can_delete }
   let!(:object) { article }
   let!(:attrs) { object.attributes }
-  # let(:not_mine) { articles :not_mine }
+  let(:not_mine) { articles :article1 }
 
   context "when not login" do
     describe "GET #index" do
@@ -20,8 +20,8 @@ RSpec.describe ArticlesController, type: :request do
     end
   end
 
-  context "when login by hkob" do
-    user_login :hkob
+  context "when login by can_delete" do
+    user_login :can_delete
 
     describe "GET #new" do
       subject { -> { get new_article_path } }
@@ -49,9 +49,18 @@ RSpec.describe ArticlesController, type: :request do
     end
 
     describe "GET #edit" do
-      subject { -> { get edit_article_path(object) } }
-      it_behaves_like "レスポンスコード確認", 200
-      it_behaves_like "描画結果に文字列が含まれている?", "記事更新"
+      subject { -> { get edit_article_path(one) } }
+      context "when owned object" do
+        let(:one) { object }
+        it_behaves_like "レスポンスコード確認", 200
+        it_behaves_like "描画結果に文字列が含まれている?", "記事更新"
+      end
+
+      context "when now owned object" do
+        let(:one) { not_mine }
+        it_behaves_like "レスポンスコード確認", 302
+        it_behaves_like "rootリダイレクト確認"
+      end
     end
 
     describe "PATCH #update" do

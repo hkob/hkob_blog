@@ -209,6 +209,14 @@ shared_examples_for "リダイレクト確認" do
   end
 end
 
+# @see https://hkob.hatenablog.com/entry/2023/12/22/050000
+shared_examples_for "rootリダイレクト確認" do
+  it do
+    subject.call
+    expect(response).to redirect_to(root_path)
+  end
+end
+
 # @see https://hkob.hatenablog.com/entry/2023/12/25/050000
 shared_examples_for "Notice メッセージ確認" do |str|
   it "notice に「#{str}」が出力されること" do

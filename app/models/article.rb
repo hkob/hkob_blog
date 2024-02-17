@@ -8,9 +8,9 @@ class Article < ApplicationRecord
 
   delegate :name, to: :user, prefix: true
 
-  # @param [User] u 確認するユーザー
+  # @param [User, nil] u 確認するユーザー
   # @return [TrueClass, FalseClass] ユーザーが所有していたら true
   def owned_by?(u)
-    user_id == u.id
+    user_id == u&.id
   end
 end
