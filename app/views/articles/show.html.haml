@@ -3,9 +3,10 @@
 
 %p= @article.body
 
-%ul
-  %li= lotfp edit_article_path(@article)
-  %li= destroy_lotfp article_path(@article), Article
+- if @article.owned_by? current_user
+  %ul
+    %li= lotfp edit_article_path(@article)
+    %li= destroy_lotfp article_path(@article), Article
 
 %h2 Comments
 = render partial: "articles/comments/comment", collection: @comments

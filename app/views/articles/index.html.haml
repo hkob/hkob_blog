@@ -3,16 +3,18 @@
 
 %table
   %thead
-    = labels Article, %w[title], add_control: true
+    = labels Article, %w[title user_name], add_control: true
   %tbody
     - @articles.each do |article|
       - next if article.archived?
 
       %tr
         %td= article.title
+        %td= article.user_name
         %td
           = lotfp article_path(article)
-          = lotfp edit_article_path(article)
-          = destroy_lotfp article_path(article), Article
+          - if article.owned_by? current_user
+            = lotfp edit_article_path(article)
+            = destroy_lotfp article_path(article), Article
     %tr
       %td= lotfp new_article_path
