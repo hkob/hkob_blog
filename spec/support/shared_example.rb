@@ -164,6 +164,19 @@ shared_examples_for "親は削除不可" do |model, relations|
   end
 end
 
+# @see https://hkob.hatenablog.com/entry/2023/12/09/070000
+shared_examples_for "親削除時にnullを設定" do |model, relations|
+  relations.each do |relation|
+    context "#{model}.#{relation}を削除したとき" do
+      it "#{model}.#{relation} が nil になること" do
+        parent = subject.send(relation)
+        parent.destroy
+        expect(subject.reload.send(relation)).to be_nil
+      end
+    end
+  end
+end
+
 # @see https://hkob.hatenablog.com/entry/2023/12/11/050000
 shared_examples_for "降順確認" do |start, block|
   it "降順に並んでいること" do

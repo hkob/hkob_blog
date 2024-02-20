@@ -94,7 +94,7 @@ RSpec.describe Article, type: :model do
             [nil], [false, false],
             article.user, [true, false]
           ],
-          user_name: [nil, %w[hkob can_delete]],
+          user_name: [nil, %w[hkob cannot_delete]],
         }
       end
     end

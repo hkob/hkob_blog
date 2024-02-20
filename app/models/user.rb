@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :trackable
 
   has_many :articles, dependent: :restrict_with_error
+  has_many :comments, dependent: :nullify
 end

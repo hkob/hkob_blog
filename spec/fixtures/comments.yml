@@ -1,11 +1,16 @@
 comment1:
-  commenter: "user 1"
+  user: hkob
   body: "comment 1 for article 1"
   article: article1
   status: "public"
 
+no_user:
+  body: "comment 2 for article 1"
+  article: article1
+  status: "public"
+
 can_delete:
-  commenter: "user 2"
+  user: can_delete
   body: "comment 2 for article can_delete"
   article: can_delete
   status: "archived"

@@ -8,4 +8,4 @@ can_delete:
   title: "This is the second article that can be deleted"
   body: "This is the body of the second article"
   status: "private"
-  user: can_delete
+  user: cannot_delete

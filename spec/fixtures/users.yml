@@ -9,3 +9,7 @@ other:
 can_delete:
   email: can_delete@example.com
   name: can_delete
+
+cannot_delete:
+  email: cannot_delete@example.com
+  name: cannot_delete
