@@ -3,8 +3,9 @@
 - if comment == @comment
   = render "articles/comments/form"
 - else
-  - %i[commenter body].each do |attr|
+  - %i[user_name body].each do |attr|
     %p= t_ars Comment, attr
     %p= comment.send attr
-  %p= lotfp article_path(@article, comment_id: comment.id), title: "コメントを編集"
-  %p= destroy_lotfp article_comment_path(@article, comment), Comment
+  - if comment.owned_by? current_user
+    %p= lotfp article_path(@article, comment_id: comment.id), title: "コメントを編集"
+    %p= destroy_lotfp article_comment_path(@article, comment), Comment

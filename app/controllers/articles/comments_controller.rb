@@ -35,9 +35,10 @@ class Articles::CommentsController < ApplicationController
 
   def take_one
     @comment = object_from_params_id Comment
+    redirect_to root_path, alert: I18n.t("errors.messages.not_owned") unless @comment.owned_by?(current_user)
   end
 
   def comment_params
-    params.require(:comment).permit(:commenter, :body, :article_id, :status)
+    params.require(:comment).permit(:user_id, :body, :article_id, :status)
   end
 end

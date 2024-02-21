@@ -20,8 +20,8 @@ RSpec.describe ArticlesController, type: :request do
     end
   end
 
-  context "when login by can_delete" do
-    user_login :can_delete
+  context "when login by cannot_delete" do
+    user_login :cannot_delete
 
     describe "GET #new" do
       subject { -> { get new_article_path } }

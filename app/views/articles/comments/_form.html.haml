@@ -5,13 +5,11 @@
         %th 項目
         %th 内容
     %tbody
-      - %i[commenter body status].each do |attr|
+      - %i[body status].each do |attr|
         %tr
           %td= form_label_and_error form, @comment, attr
           %td
             - case attr
-            - when :commenter
-              = form.text_field attr
             - when :status
               = form.select attr, Comment::VALID_STATUSES
             - else
@@ -19,5 +17,6 @@
       %tr
         %td{colspan: 2}
           = form.hidden_field :article_id
+          = form.hidden_field :user_id
           = form.submit
 
