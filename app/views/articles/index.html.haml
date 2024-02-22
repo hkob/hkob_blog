@@ -16,5 +16,7 @@
           - if article.owned_by? current_user
             = lotfp edit_article_path(article)
             = destroy_lotfp article_path(article), Article
-    %tr
-      %td= lotfp new_article_path
+    - if user_signed_in?
+      %tr
+        %td= lotfp new_article_path
+

@@ -18,3 +18,11 @@
     - if @page_title.present?
       %h1= @page_title
     = yield
+
+    %hr
+    - if user_signed_in?
+      ログイン中:
+      = current_user.name
+      = destroy_lotfp destroy_user_session_path, User
+    - else
+      = lotfp new_user_session_path

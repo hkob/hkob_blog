@@ -11,7 +11,7 @@ class ArticlesController < ApplicationController
   def show
     @article = object_from_params_id Article
     @comments = @article.comments.order_created_at_desc
-    @comment = objects_from_params(Comment) || @article.comments.build
+    @comment = objects_from_params(Comment) || @article.comments.build(user: current_user)
   end
 
   def new
