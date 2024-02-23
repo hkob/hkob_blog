@@ -8,9 +8,10 @@
     %li= lotfp edit_article_path(@article)
     %li= destroy_lotfp article_path(@article), Article
 
-%h2 Comments
-= render partial: "articles/comments/comment", collection: @comments
+= turbo_frame_tag "comments" do
+  %h2 Comments
+  = render partial: "articles/comments/comment", collection: @comments
 
-- if user_signed_in? && @comment.new_record?
-  %h2 Add a comment:
-  = render "articles/comments/form"
+  - if user_signed_in? && @comment.new_record?
+    %h2 Add a comment:
+    = render "articles/comments/form"
